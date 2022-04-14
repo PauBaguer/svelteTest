@@ -23,12 +23,15 @@
 
 <div class="card-display">
 	<div>
-		<h1 class="mdc-typography--headline1">Welcome to BookHub!</h1>
+		<h1 class="mdc-typography--headline1 white-text">Welcome to BookHub!</h1>
 	</div>
-	<h3>the reader's social network</h3>
+	<h3 class="white-text">the reader's social network</h3>
 </div>
 
 <style>
+	.white-text {
+		color: #fff;
+	}
 	.header {
 		top: 0px;
 		background-color: #2996fc;
