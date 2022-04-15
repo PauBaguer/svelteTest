@@ -2,22 +2,35 @@
 	import Card from '@smui/card';
 	import Button, { Label } from '@smui/button';
 	import { onMount } from 'svelte';
+	import { Geolocation } from '@capacitor/geolocation';
 
 	let L;
 	let map;
 	let marker;
 	let location = '';
 	async function getLocation() {
+		console.log('===ENV===');
+		console.log(import.meta);
+		console.log('===ENV===');
 		location = '';
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition((position) => {
-				location = `${position.coords.latitude}º, ${position.coords.longitude}º`;
 
-				if (marker) marker.remove();
-				marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
-				map.flyTo([position.coords.latitude, position.coords.longitude]);
-			});
-		}
+		const res = await Geolocation.getCurrentPosition();
+		console.log(res);
+		location = `${res.coords.latitude}º, ${res.coords.longitude}º`;
+		if (marker) marker.remove();
+		marker = L.marker([res.coords.latitude, res.coords.longitude]).addTo(map);
+		map.flyTo([res.coords.latitude, res.coords.longitude]);
+
+		// if (navigator.geolocation) {
+		// 	console.log('navigator.geolocation!');
+		// 	navigator.geolocation.getCurrentPosition((position) => {
+		// 		location = `${position.coords.latitude}º, ${position.coords.longitude}º`;
+
+		// 		if (marker) marker.remove();
+		// 		marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+		// 		map.flyTo([position.coords.latitude, position.coords.longitude]);
+		// 	});
+		// }
 	}
 
 	onMount(async () => {

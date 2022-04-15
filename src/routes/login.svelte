@@ -20,7 +20,7 @@
 </script>
 
 <div class="card-display">
-	<div><h1 class="white-text">Welcome to BookHub</h1></div>
+	<div><h3 class="white-text">Welcome to BookHub</h3></div>
 	<div class="card-container">
 		<Card padded>
 			<h4>Login</h4>
